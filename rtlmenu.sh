@@ -9,15 +9,15 @@ LAST_ITEM="0 Record"
 do_freq_setup()
 {
 
-if FREQ=$(whiptail --inputbox "Choose input Frequency (in MHZ) Default is 434MHZ" 8 78 $INPUT_RTLSDR --title "RTL-SDR Receive Frequency" 3>&1 1>&2 2>&3); then
+if FREQ=$(whiptail --inputbox "Dinleme Frekansı giriniz (MHZ) Varsayılan 434MHZ" 8 78 $INPUT_RTLSDR --title "RTL-SDR Alıcı Frekansı" 3>&1 1>&2 2>&3); then
     INPUT_RTLSDR=$FREQ
 fi
 
-if GAIN=$(whiptail --inputbox "Choose input Gain (0(AGC) or 1-45)" 8 78 $INPUT_GAIN --title "RTL-SDR Receive Frequency" 3>&1 1>&2 2>&3); then
+if GAIN=$(whiptail --inputbox "Alıcı Kazancı (0(AGC) or 1-45)" 8 78 $INPUT_GAIN --title "RTL-SDR Alıcı Kazancı" 3>&1 1>&2 2>&3); then
     INPUT_GAIN=$GAIN
 fi
 
-if FREQ=$(whiptail --inputbox "Choose output Frequency (in MHZ) Default is 434MHZ" 8 78 $OUTPUT_FREQ --title "Transmit Frequency" 3>&1 1>&2 2>&3); then
+if FREQ=$(whiptail --inputbox "Gönderme frekansı giriniz (MHZ) Varsayılan 434MHZ" 8 78 $OUTPUT_FREQ --title "Gönderme Frekansı" 3>&1 1>&2 2>&3); then
     OUTPUT_FREQ=$FREQ
 fi
 
@@ -32,7 +32,7 @@ do_stop()
 do_status()
 {
 	 LAST_ITEM="$menuchoice"
-	whiptail --title "Processing ""$LAST_ITEM"" on ""$OUTPUT_FREQ""MHZ" --msgbox "Running" 8 78
+	whiptail --title "Gönderiliyor""$LAST_ITEM"" frekans ""$OUTPUT_FREQ""MHZ" --msgbox "Gönderim" 8 78
 	do_stop
 }
 
@@ -41,12 +41,12 @@ do_freq_setup
  while [ "$status" -eq 0 ]
     do
 
- menuchoice=$(whiptail --default-item "$LAST_ITEM" --title "Rpitx with RTLSDR" --menu "Choose your test" 20 82 12 \
-	"0 Record" "Record spectrum on $INPUT_RTLSDR" \
-	"1 Play" "Replay spectrum" \
-	"2 Transponder" "Transmit $INPUT_RTLSDR to ""$OUTPUT_FREQ"MHZ \
-	"3 Fm->SSB" "Transcode FM $INPUT_RTLSDR to ""$OUTPUT_FREQ"MHZ \
-	"4 Set frequency" "Modify frequency (actual $INPUT_RTLSDR Mhz)" \
+ menuchoice=$(whiptail --default-item "$LAST_ITEM" --title "Rpitx ve RTLSDR" --menu "İşleminizi Seçiniz" 20 82 12 \
+	"0 Kaydet" "$INPUT_RTLSDR frekansında spektrumu kaydet" \
+	"1 Geri Oynat" "Kaydedilen spektrumu geri oynat" \
+	"2 Role/Transponder" "$INPUT_RTLSDR dan aldığını ""$OUTPUT_FREQ"MHZ den gönder \
+	"3 Fm->SSB" "FM olarak $INPUT_RTLSDR frekansını dinleyip ""$OUTPUT_FREQ"MHZ frekanstan SSB \
+	"4 Frekansı Değiştir" "Frekansı değiştir (mevcut $INPUT_RTLSDR Mhz)" \
 	3>&2 2>&1 1>&3)
 
         case "$menuchoice" in
@@ -61,7 +61,8 @@ do_freq_setup
 		4\ *)
 		do_freq_setup;;
 		*)	 status=1
-		whiptail --title "Bye bye" --msgbox "Thanks for using rpitx!" 8 78
+		whiptail --title "Bye bye" --msgbox "rpitx kullandığınız için teşekkürler!" 8 78
 		;;
         esac
     done
+
