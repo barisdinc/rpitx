@@ -6,7 +6,7 @@ LAST_ITEM="0 Tune"
 do_freq_setup()
 {
 
-if FREQ=$(whiptail --inputbox "Choose output Frequency (in MHz) Default is 434 MHz" 8 78 $OUTPUT_FREQ --title "Rpitx transmit Frequency" 3>&1 1>&2 2>&3); then
+if FREQ=$(whiptail --inputbox "Çalışma frekansını (MHz) yazın, Varsayılan 434 MHz" 8 78 $OUTPUT_FREQ --title "Rpitx Gönderme Frekansı" 3>&1 1>&2 2>&3); then
     OUTPUT_FREQ=$FREQ
 fi
 
@@ -49,7 +49,7 @@ do_stop_transmit()
 do_status()
 {
 	 LAST_ITEM="$menuchoice"
-	whiptail --title "Transmit ""$LAST_ITEM"" on ""$OUTPUT_FREQ"" MHz" --msgbox "Transmitting" 8 78
+	whiptail --title "Gönderim frekansı ""$OUTPUT_FREQ"" MHz" (""$LAST_ITEM"")"  --msgbox "Gönderiliyor" 8 78
 	do_stop_transmit
 }
 
@@ -59,20 +59,20 @@ do_freq_setup
  while [ "$status" -eq 0 ]
     do
 
- menuchoice=$(whiptail --default-item "$LAST_ITEM" --title "Rpitx on ""$OUTPUT_FREQ"" MHz" --menu "Range frequency : 50kHz-1GHz. Choose your test" 20 82 12 \
- 	"F Set frequency" "Modify frequency (actual $OUTPUT_FREQ MHz)" \
-	"0 Tune" "Carrier" \
-    "1 Chirp" "Moving carrier" \
-	"2 Spectrum" "Spectrum painting" \
-	"3 RfMyFace" "Snap with Raspicam and RF paint" \
-	"4 FmRds" "Broadcast modulation with RDS" \
-	"5 NFM" "Narrow band FM" \
-	"6 SSB" "Upper Side Band modulation" \
-	"7 AM" "Amplitude Modulation (Poor quality)" \
-	"8 FreeDV" "Digital voice mode 800XA" \
+ menuchoice=$(whiptail --default-item "$LAST_ITEM" --title "Rpitx TX ""$OUTPUT_FREQ"" MHz" --menu "Frekans Aralığı : 50kHz-1GHz. Seçim yapınız" 20 82 12 \
+ 	"F Frekans Değiştirme" "Çalışma frekansınızı (şu anda $OUTPUT_FREQ MHz) değiştirin" \
+	"0 Taşıyıcı Gönderimi" "Taşıyıcı" \
+    "1 Tarama" "Frekans Tarama" \
+	"2 Spektrum Resim Çizme" "Spektrumda Resim" \
+	"3 Kameradan Çizdir" "Kamera Görüntüsünü Spektruma Çizdir" \
+	"4 FM RDS" "FM Radyo yayını (RDS'li)" \
+	"5 NFM" "Dar Band FM" \
+	"6 SSB" "Tek Tan Band Modülasyonu (USB)" \
+	"7 AM" "Genlik Modülasyonu (Düşük Kalite)" \
+	"8 FreeDV" "Dijital Ses Haberleşmesi 800XA" \
 	"9 SSTV" "Pattern picture" \
-	"10 Pocsag" "Pager message" \
-    "11 Opera" "Like morse but need Opera decoder" \
+	"10 Pocsag" "Çağrı Cihazına Mesaj" \
+    "11 Opera" "Mors benzeri, opera decoder gerektirir" \
     "12 RTTY" "Radioteletype" \
  	3>&2 2>&1 1>&3)
 		RET=$?
