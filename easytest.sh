@@ -49,7 +49,7 @@ do_stop_transmit()
 do_status()
 {
 	 LAST_ITEM="$menuchoice"
-	whiptail --title "Gönderim frekansı ""$OUTPUT_FREQ"" MHz" (""$LAST_ITEM"")"  --msgbox "Gönderiliyor" 8 78
+	whiptail --title "Gönderim frekansı ""$OUTPUT_FREQ"" MHz (""$LAST_ITEM"")"  --msgbox "Gönderiliyor" 8 78
 	do_stop_transmit
 }
 
