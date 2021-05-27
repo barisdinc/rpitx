@@ -45,7 +45,7 @@ do_freq_setup
 	"0 Kaydet" "$INPUT_RTLSDR frekansında spektrumu kaydet" \
 	"1 Geri Oynat" "Kaydedilen spektrumu geri oynat" \
 	"2 Role/Transponder" "$INPUT_RTLSDR dan aldığını ""$OUTPUT_FREQ"MHZ den gönder \
-	"3 Fm->SSB" "FM olarak $INPUT_RTLSDR frekansını dinleyip ""$OUTPUT_FREQ"MHZ frekanstan SSB \
+	"3 Fm->SSB" "FM  $INPUT_RTLSDR  ""$OUTPUT_FREQ"MHZ SSB \
 	"4 Frekansı Değiştir" "Frekansı değiştir (mevcut $INPUT_RTLSDR Mhz)" \
 	3>&2 2>&1 1>&3)
 
